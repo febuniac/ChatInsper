@@ -11,11 +11,11 @@
          <!--  <th>Id</th>-->
       </tr>
       
-      <c:forEach items="${tarefas}" var="tarefa">
+      <c:forEach items="${mensagens_}" var="parametros">
          <tr>
   
- 			<td><div align="center">${tarefa.usuario}</div></td>
-            <td>${tarefa.mensagem}</td>
+ 			<td><div align="center"><font color="DODGERBLUE">${parametros.usuario}</font></div></td>
+            <td>${parametros.mensagem}</td>
            <!-- <td>${tarefa.id}</td>-->
 
          </tr>

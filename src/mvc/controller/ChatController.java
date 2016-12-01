@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import mvc.model.Tarefa;
-import mvc.model.TarefaDAO;
+import mvc.model.Parametros;
+import mvc.model.ChatDAO;
 import mvc.model.Usuario;
 import mvc.model.UsuarioDAO;
 
@@ -32,55 +32,37 @@ public class ChatController {
     
 
     @RequestMapping("ChatInsper")
-    public String ChatInsper(Model model,Usuario usuario, HttpSession session, Tarefa tarefa) {
-    	tarefa.setUsuario((String) session.getAttribute("usuarioLogado"));
-		TarefaDAO dao = new TarefaDAO();
-		model.addAttribute("tarefas", dao.getLista());
+    public String ChatInsper(Model model,Usuario usuario, HttpSession session, Parametros parametro) {
+    	parametro.setUsuario((String) session.getAttribute("usuarioLogado"));
+		ChatDAO dao = new ChatDAO();
+		model.addAttribute("mensagens_", dao.getLista());
         return "telaChat";
     }
     
     @RequestMapping("apagaMensagem")
     public String apagaMensagem(){
-    TarefaDAO dao = new TarefaDAO();
+    ChatDAO dao = new ChatDAO();
     dao.apaga();
 	return "redirect: ChatInsper";
     }
     
     @RequestMapping("adicionaMensagem")
-    public String adiciona(@Valid Tarefa tarefa,HttpSession session, BindingResult result) {
+    public String adiciona(@Valid Parametros parametro,HttpSession session, BindingResult result) {
     	if(result.hasErrors()) {
     	    return "telaChat";
     	}
-    	TarefaDAO dao = new TarefaDAO();
-    	tarefa.setUsuario((String) session.getAttribute("usuarioLogado"));
+    	ChatDAO dao = new ChatDAO();
+    	parametro.setUsuario((String) session.getAttribute("usuarioLogado"));
     	//System.out.println(session.getAttribute("usuarioLogado"));
-    	dao.adiciona(tarefa);
+    	dao.adiciona(parametro);
         return "redirect:ChatInsper";
     }
     
-    @RequestMapping("listaTarefa")
+    @RequestMapping("listaMensagem")
     public String lista(Model model) {
-        TarefaDAO dao = new TarefaDAO();
-        model.addAttribute("tarefas", dao.getLista());
+        ChatDAO dao = new ChatDAO();
+        model.addAttribute("mensagens_", dao.getLista());
         return "telaChat";
-    }
-    @RequestMapping("removeTarefa")
-    public String remove(Tarefa tarefa) {
-        TarefaDAO dao = new TarefaDAO();
-        dao.remove(tarefa);
-        return "redirect:listaTarefas";
-    }
-    @RequestMapping("mostraTarefa")
-    public String mostra(Long id, Model model) {
-        TarefaDAO dao = new TarefaDAO();
-        model.addAttribute("tarefa", dao.buscaPorId(id));
-        return "mostra";
-    }
-    @RequestMapping("alteraTarefa")
-    public String altera(Tarefa tarefa) {
-           TarefaDAO dao = new TarefaDAO();
-           dao.altera(tarefa);
-           return "redirect:listaTarefas";
     }
     @Controller
     public class LoginController{
@@ -125,8 +107,8 @@ public class ChatController {
     }
     @RequestMapping("Jquery")
     public String Jquery(Model model){
-    	TarefaDAO dao = new TarefaDAO();
-    	model.addAttribute("tarefas",dao.getLista());
+    	ChatDAO dao = new ChatDAO();
+    	model.addAttribute("mensagens_",dao.getLista());
     	dao.close();
     	return "lista";
     }

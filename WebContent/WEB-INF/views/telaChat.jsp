@@ -15,7 +15,7 @@
     <form action="adicionaMensagem" method="post">
     	Message: <br />
     	<textarea name="mensagem" rows="2" cols="37"></textarea><br />
-    	<form:errors path="tarefa.mensagem" cssStyle="color:red"/><br/>
+    	<form:errors path="parametros.mensagem" cssStyle="color:red"/><br/>
     	<input type="submit" value="Send">
 
     </form>

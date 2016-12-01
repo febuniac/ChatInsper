@@ -7,11 +7,11 @@ import javax.validation.constraints.*;
 //import org.springframework.format.annotation.DateTimeFormat;
 
 
-public class Tarefa {
+public class Parametros {
     private Long id;
-    @NotNull(message="Por favor entre uma mensagem")
-    @Size(min=1, message="Mensagem deve ter um texto para ser enviada")
     private String mensagem;
+    //@NotNull(message="Por favor entre uma mensagem")
+    //@Size(min=1, message="Mensagem deve ter um texto para ser enviada")
     private String usuario;
 
     public Long getId() {return id;}

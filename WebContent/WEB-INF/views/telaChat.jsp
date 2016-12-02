@@ -9,6 +9,9 @@
     <form action="apagaMensagem" method="post">
     	<input type = "submit" value= "Apagar Mensagens Anteriores">
    </form>
+   <form action = "logout" method = "post">
+   	<input type = "submit" value= "Logout">
+   	</form>
 
 
      <div id="loop"></div> 

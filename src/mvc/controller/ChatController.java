@@ -26,7 +26,6 @@ public class ChatController {
 
     @RequestMapping("/")
     public String execute() {
-        System.out.println("Lógica do MVC");
         return "formulario-registro";
     }
     
@@ -110,6 +109,6 @@ public class ChatController {
     	ChatDAO dao = new ChatDAO();
     	model.addAttribute("mensagens_",dao.getLista());
     	dao.close();
-    	return "lista";
+    	return "dadosTela";
     }
 }

@@ -3,25 +3,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
 <html>
 <body>
-<table border= "10" width="600">
+<table border= "10">
       <tr>
          
-          <th>Usuário</th>
-         <th>Mensagem</th>
+          <th width =50px> Foto</th>
+          <th width = 180px>Usuário</th>
+         <th width= 400px>Mensagem</th>
          <!--  <th>Id</th>-->
       </tr>
       
       <c:forEach items="${mensagens_}" var="parametros">
          <tr>
-  
+  			<td><img src="getImage?login=${parametros.usuario}" width="50" height="50" /></td>
  			<td><div align="center"><font color="DODGERBLUE">${parametros.usuario}</font></div></td>
             <td>${parametros.mensagem}</td>
-           <!-- <td>${tarefa.id}</td>-->
+          
+           <!-- <td>${parametros.id}</td>-->
 
          </tr>
       </c:forEach>
    </table>
 </body>
 </html>	   
-</body>
-</html>
